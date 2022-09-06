@@ -70,7 +70,7 @@ pipeline {
 
                 }
                 steps {
-                    sh '''make push-image-ecr -C mlops/scrips'''
+                    sh '''make push-image-ecr -C mlops/scripts'''
                 }
 
             }
