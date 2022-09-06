@@ -1,10 +1,6 @@
 pipeline {
     agent {
-        dockerfile {
-            filename 'Dockerfile_CICD'
-            dir 'mlops/docker'
 
-        }
 
      }
 
@@ -62,11 +58,23 @@ pipeline {
 
             }
             // Docker image building and registration to ECR
-            stage('Building Image and Registration') {
+            stage('Building Docker Image') {
                 steps {
                     // build Docker image and push to AWS ECR
-                    sh '''make build-push-image-ecr -C mlops/scripts''' //RAJOUTER IMAGE en tant env
+                    sh '''make build-image -C mlops/scripts''' //RAJOUTER IMAGE en tant env
                 }
+            }
+            stage('Pushing image'){
+                agent {
+                    dockerfile {
+                    filename 'Dockerfile_CICD'
+                    dir 'mlops/docker'
+
+                }
+                steps {
+                    sh '''make push-image-ecr -C mlops/scrips'''
+                }
+
             }
             stage ('Deploy') {
                 steps {
