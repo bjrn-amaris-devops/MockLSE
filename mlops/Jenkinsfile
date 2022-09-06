@@ -48,6 +48,12 @@ pipeline {
 //                 }
 //             }
 //         }
+            stage('Init'){
+                steps{
+                    sh '''ls'''
+                }
+
+            }
             // Docker image building and registration to ECR
             stage('Building Image and Registration') {
                 steps {
