@@ -13,4 +13,9 @@ RUN apk add --no-cache \
 
 RUN apk add --no-cache make
 
+RUN apk add --update docker openrc
+
+RUN service docker start
+
+
 
