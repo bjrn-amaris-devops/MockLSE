@@ -20,7 +20,7 @@ RUN mkdir /.docker
 RUN touch /.docker/config.json
 RUN chown -R root /.docker
 
-RUN echo '"{"credsStore": "osxkeychain"}"' > /.docker/config.json
+RUN echo '{"credsStore": "osxkeychain"}' > /.docker/config.json
 
 
 
