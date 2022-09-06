@@ -2,8 +2,6 @@ FROM alpine:latest
 
 WORKDIR app/
 
-USER awscliuser
-
 RUN apk add --no-cache \
         python3 \
         py3-pip \
@@ -20,7 +18,7 @@ RUN apk add --update docker openrc
 #RUN service docker start
 RUN mkdir /.docker
 RUN touch /.docker/config.json
-RUN chown -R +rw awscliuser /.docker
+RUN chown -R +rw awscliuser $USER /.docker
 
 RUN echo '"{"credsStore": "osxkeychain"}"' > /.config/docker.json
 
