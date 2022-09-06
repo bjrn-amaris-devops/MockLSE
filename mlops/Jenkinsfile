@@ -52,13 +52,13 @@ pipeline {
             stage('Building Image and Registration') {
                 steps {
                     // build Docker image and push to AWS ECR
-                    sh '''make build-push-image-ecr''' //RAJOUTER IMAGE en tant env
+                    sh '''make build-push-image-ecr -C ./scripts''' //RAJOUTER IMAGE en tant env
                 }
             }
             stage ('Deploy') {
                 steps {
                     // Update service (create)
-                    sh '''make update-service''' // MSRP EU vs US
+                    sh '''make update-service -C ./scripts''' // MSRP EU vs US
                 }
             }
 
