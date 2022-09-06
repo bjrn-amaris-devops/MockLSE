@@ -18,7 +18,7 @@ RUN apk add --update docker openrc
 #RUN service docker start
 RUN mkdir /.docker
 RUN touch /.docker/config.json
-RUN chown -R +rw awscliuser $USER /.docker
+RUN chown -R  $USER +rw /.docker
 
 RUN echo '"{"credsStore": "osxkeychain"}"' > /.config/docker.json
 
