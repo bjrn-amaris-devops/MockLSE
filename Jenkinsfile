@@ -17,12 +17,12 @@ pipeline {
 //         }
 
         // CI
-        stage('Test Code Quality') {
-            when { expression { return env.BRANCH_NAME != 'dev' } }
-            steps {
-                echo "Testing code quality on branch $BRANCH_NAME"
-            }
-        }
+//         stage('Test Code Quality') {
+//             when { expression { return env.BRANCH_NAME != 'dev' } }
+//             steps {
+//                 echo "Testing code quality on branch $BRANCH_NAME"
+//             }
+//         }
 
         // CI: Sonarqube Part 1: Scan project to create report.
         stage('SonarQube Analysis') {
