@@ -1,20 +1,20 @@
 pipeline {
     agent any
 
-    options {
-        skipDefaultCheckout true
-    }
+    //options {
+    //    skipDefaultCheckout true
+    //}
     stages {
 
         // CI
-        stage('Initialize Workspace and Checkout Source') {
-            steps {
-                echo "Running pipeline on $BRANCH_NAME"
-                sh 'printenv | sort'
-                cleanWs()
-                checkout scm
-            }
-        }
+//         stage('Initialize Workspace and Checkout Source') {
+//             steps {
+//                 echo "Running pipeline on $BRANCH_NAME"
+//                 sh 'printenv | sort'
+//                 cleanWs()
+//                 checkout scm
+//             }
+//         }
 
         // CI
         stage('Test Code Quality') {
