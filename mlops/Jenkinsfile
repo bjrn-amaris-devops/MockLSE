@@ -67,8 +67,9 @@ pipeline {
             stage('Pushing image'){
                 agent {
                     dockerfile {
-                    filename 'Dockerfile_CICD'
-                    dir 'mlops/docker'
+                        filename 'Dockerfile_CICD'
+                        dir 'mlops/docker'
+                    }
 
                 }
                 steps {
