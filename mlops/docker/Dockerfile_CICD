@@ -22,6 +22,9 @@ RUN chown -R root /.docker
 
 RUN echo '{"credsStore": "osxkeychain"}' > /.docker/config.json
 
-
+RUN git clone https://github.com/docker/docker-credential-helpers.git
+RUN cd docker-credential-helpers \
+    && make osxkeychain \
+    && cp bin/build/docker-credential-osxkeychain /usr/local/bin/
 
 
