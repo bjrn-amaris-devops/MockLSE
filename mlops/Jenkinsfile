@@ -3,7 +3,7 @@ pipeline {
         dockerfile {
             filename 'Dockerfile_CICD'
             dir 'mlops/docker'
-            label 'aws-cli-image'
+
         }
 
      }
