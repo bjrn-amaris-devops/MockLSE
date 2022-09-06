@@ -4,6 +4,15 @@ pipeline {
     //options {
     //    skipDefaultCheckout true
     //}
+    environment {
+        AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+        //Useless
+        //GITHUB_ACCESS_KEY_ID  = credentials('jenkins-github-secret-key-id')
+        //GITHUB_SECRET_ACCESS_KEY = credentials('jenkins-github-secret-access-key')
+        AWS_DEFAULT_REGION="eu-west-3a"
+        AWS_ECR_URI="987924616652.dkr.ecr.eu-west-2.amazonaws.com/nginx-web-server"
+    }
     stages {
 
         // CI
