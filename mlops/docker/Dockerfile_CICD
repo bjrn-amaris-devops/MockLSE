@@ -29,6 +29,7 @@ RUN tar -C /usr/local -xzf go1.10.3.linux-amd64.tar.gz
 # update path environment after golang installation
 ENV PATH="${PATH}:/usr/local/go/bin"
 
+RUN echo $PATH
 
 RUN git clone https://github.com/docker/docker-credential-helpers.git
 RUN cd docker-credential-helpers \
