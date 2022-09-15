@@ -16,15 +16,13 @@ pipeline {
    stages {
 
         stage('Init'){
-            steps{
-                node {
-                    withEnv(['PATH+AWS=/usr/local/bin']) {
-                        sh '''aws s3 ls'''
+            node {
+                withEnv(['PATH+AWS=/usr/local/bin']) {
+                    sh '''aws s3 ls'''
 
-                    }
                 }
-            }
 
+            }
         }
    }
 }
