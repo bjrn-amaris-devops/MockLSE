@@ -12,8 +12,8 @@ pipeline {
         //GITHUB_SECRET_ACCESS_KEY = credentials('jenkins-github-secret-access-key')
         AWS_DEFAULT_REGION="eu-west-3a"
         AWS_ECR_URI="987924616652.dkr.ecr.eu-west-2.amazonaws.com/nginx-web-server"
-        MSRP_SERVICE=FAKE
-        MSRP_CLUSTER=MSRWEBAPP
+        MSRP_SERVICE="FAKE"
+        MSRP_CLUSTER="MSRWEBAPP"
     }
    stages {
         stage('Init'){
