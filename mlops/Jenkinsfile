@@ -16,7 +16,9 @@ pipeline {
    stages {
         stage('Init'){
             steps{
-                sh '''sh service_manager.sh'''
+                sh '''#!/bin/bash
+                      ./service_manager.sh
+                   '''
             }
         }
    }
