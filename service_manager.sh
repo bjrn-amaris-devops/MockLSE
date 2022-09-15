@@ -1,46 +1,46 @@
 export PATH=${PATH}:/usr/local/bin
 
 function get_task_definiton() {
-    SERVICE=$1
-    CLUSTER=$2
+    local SERVICE=$1
+    local CLUSTER=$2
     TASK=$(aws ecs describe-services --service $SERVICE --cluster $CLUSTER | jq '.services[0] | .taskDefinition')
     echo $TASK
 }
 
 function export_task_definiton() {
-    SERVICE=$1
-    CLUSTER=$2
+    local SERVICE=$1
+    local CLUSTER=$2
     TASK=$(aws ecs describe-services --service $SERVICE --cluster $CLUSTER | jq '.services[0] | .taskDefinition')
     echo $TASK
 }
 
 function get_task_version() {
-    TASK_DEFINITION=$1
-    echo $TASK_DEFINITION | cut -d : -f 2
+    local TASK_DEFINITION=$1
+    echo $TASK_DEFINITION | cut -d '/' -f 2 | cut -d : -f 2 | tr -d '"'
 
 }
 function get_task_family() {
-    TASK_DEFINITION=$1
-    echo $TASK_DEFINITION | cut -d : -f 1
+    local TASK_DEFINITION=$1
+    echo $TASK_DEFINITION | cut -d '/' -f 2 | cut -d : -f 1
 
 }
 
 function increment() {
-    VAR=$1
+    local VAR=$1
     VAR=$((VAR+1))
     echo $VAR
 }
 
 function register_task_definition() {
-    SERVICE=$1
-    CLUSTER=$2
-    TASK_FAMILY=$3
-    TASK=$4
+    local SERVICE=$1
+    local CLUSTER=$2
+    local TASK_FAMILY=$3
+    local TASK=$4
 
 }
 
 function update_task_definition() {
-    TASK_DEFINITION=$1
+    local TASK_DEFINITION=$1
     VERSION=$(get_task_version $TASK_DEFINITION)
     FAMILY=$(get_task_family $TASK_DEFINITION)
 
@@ -49,9 +49,9 @@ function update_task_definition() {
 }
 
 function update_service() {
-    SERVICE=$1
-    CLUSTER=$2
-    COUNT=2
+    local SERVICE=$1
+    local CLUSTER=$2
+    local COUNT=2
 
 
     TASK_DEFINITION=$(get_task_definiton "$SERVICE" "$CLUSTER")
@@ -61,10 +61,10 @@ function update_service() {
 
     TASK=$(aws ecs describe-task-definition --cluster "$CLUSTER" --task-definition "${TASK_FAMILY}:${TASK_VERSION}")
 
-    register_task_definition "$CLUSTER" "$SERVICE" "$TASK_FAMILY" "$TASK"
+    register_task_definition "$SERVICE" "$CLUSTER" "$TASK_FAMILY" "$TASK"
 
 
-    aws ecs update-service --service "$SERVICE" --task-definition "$N_TASK_DEFINITION" --desired-count $COUNT
+    aws ecs update-service --cluster "$CLUSTER" --service "$SERVICE" --task-definition "${TASK_FAMILY}:${TASK_VERSION}" --desired-count $COUNT
 }
 
 update_service $1 $2
