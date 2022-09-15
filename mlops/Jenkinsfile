@@ -18,10 +18,10 @@ pipeline {
    stages {
         stage('Init'){
             steps{
-                sh '''#!/bin/bash
+                sh """#!/bin/bash
                       chmod +x service_manager.sh
-                      ./service_manager.sh $SERVICE $CLUSTER
-                   '''
+                      ./service_manager.sh ${SERVICE} ${CLUSTER}
+                   """
             }
         }
    }
