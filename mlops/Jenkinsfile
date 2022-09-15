@@ -15,7 +15,11 @@ pipeline {
     }
    stages {
         stage('Init'){
-            sh '''/usr/local/bin/aws ls'''
+            steps{
+                step {
+                    sh '''/usr/local/bin/aws ls'''
+                }
+            }
         }
    }
 }
