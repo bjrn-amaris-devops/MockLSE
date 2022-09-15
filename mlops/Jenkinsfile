@@ -14,15 +14,8 @@ pipeline {
         AWS_ECR_URI="987924616652.dkr.ecr.eu-west-2.amazonaws.com/nginx-web-server"
     }
    stages {
-
         stage('Init'){
-            node {
-                withEnv(['PATH+AWS=/usr/local/bin']) {
-                    sh '''aws s3 ls'''
-
-                }
-
-            }
+            sh '''/usr/local/bin/aws ls'''
         }
    }
 }
