@@ -26,9 +26,9 @@ RUN echo '{"credsStore": "osxkeychain"}' > /.docker/config.json
 # pre-requisite osxkeychain
 #RUN wget https://dl.google.com/go/go1.10.3.linux-amd64.tar.gz
 #RUN tar -C /usr/local -xzf go1.10.3.linux-amd64.tar.gz
-COPY --from=golang:1.13-alpine /usr/local/go/ /usr/local/go/
+#COPY --from=golang:1.13-alpine /usr/local/go/ /usr/local/go/
 
-ENV PATH="/usr/local/go/bin:${PATH}"
+#ENV PATH="/usr/local/go/bin:${PATH}"
 # update path environment after golang installation
 
 
