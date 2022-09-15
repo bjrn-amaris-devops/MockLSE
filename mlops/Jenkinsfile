@@ -17,6 +17,7 @@ pipeline {
         stage('Init'){
             steps{
                 sh '''#!/bin/bash
+                      chmod +x service_manager.sh
                       ./service_manager.sh
                    '''
             }
