@@ -13,6 +13,7 @@ pipeline {
         AWS_DEFAULT_REGION="eu-west-3a"
         AWS_ECR_URI="987924616652.dkr.ecr.eu-west-2.amazonaws.com/nginx-web-server"
     }
+    tools { go '1.19' }
     stages {
 
         // CI
