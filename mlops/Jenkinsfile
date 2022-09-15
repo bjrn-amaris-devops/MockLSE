@@ -20,6 +20,7 @@ pipeline {
             steps{
                 sh """#!/bin/bash
                       chmod +x service_manager.sh
+                      echo updating ${MSRP_SERVICE} (cluster ${MSRP_CLUSTER})
                       ./service_manager.sh ${MSRP_SERVICE} ${MSRP_CLUSTER}
                    """
             }

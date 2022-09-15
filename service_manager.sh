@@ -53,6 +53,7 @@ function update_service() {
     CLUSTER=$2
     COUNT=2
 
+
     TASK_DEFINITION=$(get_task_definiton $SERVICE $CLUSTER)
     N_TASK_DEFINITION=$(update_task_definition $TASK_DEFINITION)
     TASK_FAMILY=$(get_task_family $N_TASK_DEFINITION)
