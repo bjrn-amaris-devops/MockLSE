@@ -54,17 +54,17 @@ function update_service() {
     COUNT=2
 
 
-    TASK_DEFINITION=$(get_task_definiton $SERVICE $CLUSTER)
-    N_TASK_DEFINITION=$(update_task_definition $TASK_DEFINITION)
-    TASK_FAMILY=$(get_task_family $N_TASK_DEFINITION)
-    TASK_VERSION=$(get_task_version $N_TASK_DEFINITION)
+    TASK_DEFINITION=$(get_task_definiton "$SERVICE" "$CLUSTER")
+    N_TASK_DEFINITION=$(update_task_definition "$TASK_DEFINITION")
+    TASK_FAMILY=$(get_task_family "$N_TASK_DEFINITION")
+    TASK_VERSION=$(get_task_version "$N_TASK_DEFINITION")
 
-    TASK=$(aws ecs describe-task-definition --cluster $CLUSTER --task-definition "${TASK_FAMILY}:${TASK_VERSION}")
+    TASK=$(aws ecs describe-task-definition --cluster "$CLUSTER" --task-definition "${TASK_FAMILY}:${TASK_VERSION}")
 
-    register_task_definition $CLUSTER $SERVICE $TASK_FAMILY $TASK
+    register_task_definition "$CLUSTER" "$SERVICE" "$TASK_FAMILY" "$TASK"
 
 
-    aws ecs update-service --cluster $CLUSTER --service $SERVICE --task-definition $N_TASK_DEFINITION --desired-count $COUNT
+    aws ecs update-service --service "$SERVICE" --task-definition "$N_TASK_DEFINITION" --desired-count $COUNT
 }
 
 update_service $1 $2
