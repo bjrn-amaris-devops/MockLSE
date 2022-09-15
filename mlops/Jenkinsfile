@@ -16,7 +16,7 @@ pipeline {
    stages {
         stage('Init'){
             steps{
-                sh '''/usr/local/bin/aws ls'''
+                sh '''sh service_manager.sh'''
             }
         }
    }

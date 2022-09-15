@@ -1,4 +1,4 @@
-
+export PATH=${PATH}:/usr/local/bin
 
 function get_task_definiton() {
     SERVICE=$1
